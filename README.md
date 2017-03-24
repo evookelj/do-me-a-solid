@@ -1,2 +1,8 @@
-# do-me-a-solid
-Graphics Work 6: Adding 3d shapes (box, sphere, torus)
+# bezoar-helmet
+Graphics Work 5 Curves
+
+## To install rustc
+Run this command in your terminal: ``` $ curl https://sh.rustup.rs -sSf | sh ```
+
+## To test my code
+``` $  make run  ```
