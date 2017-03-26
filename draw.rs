@@ -211,15 +211,30 @@ pub fn add_box(edges: &mut Gmatrix, x:i32, y:i32, z:i32, w:i32, h:i32, d:i32) {
 }
 
 pub fn add_sphere(edges: &mut Gmatrix, cx: f32, cy: f32, cz: f32, r: f32) {
-	println!("Adding a sphere!");
+	let mut rot = 0.0;
+	let mut mrot;
+	while rot < 1.0 {
+		let mut circ = 0.0;
+		let mut mcirc;
+		while circ < 1.0 {
+			mrot = rot*2.0*PI;
+			mcirc = circ*PI;
+			let x = (r * mcirc.cos()) as i32;
+			let y = (r * mcirc.sin() * mrot.cos()) as i32;
+			let z = (r * mcirc.sin() * mrot.sin()) as i32;
+			edges.add_edge(x,y,z,x+2,y+2,z+2);
+			circ += 0.01
+		}
+		rot += 0.001;
+	}
 }
 
 pub fn add_torus(edges: &mut Gmatrix, cx:f32, cy:f32, cz:f32, r1: f32, r2:f32) {
 	let mut rot = 0.0;
 	let mut mrot;
-	let mut mcirc;
 	while rot<1.0 {
 		let mut circ = 0.0;
+		let mut mcirc;
 		while circ<1.0 {
 			mrot = rot*2.0*PI;
 			mcirc = circ*2.0*PI;
