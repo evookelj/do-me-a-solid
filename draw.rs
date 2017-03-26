@@ -215,14 +215,12 @@ pub fn add_sphere(edges: &mut Gmatrix, cx: f32, cy: f32, cz: f32, r: f32) {
 }
 
 pub fn add_torus(edges: &mut Gmatrix, cx:f32, cy:f32, cz:f32, r1: f32, r2:f32) {
-	println!("Adding a torus!");
 	let mut rot = 0.0;
 	let mut mrot;
 	let mut mcirc;
 	while rot<1.0 {
 		let mut circ = 0.0;
 		while circ<1.0 {
-			println!("rot {} circ {}", rot,circ);
 			mrot = rot*2.0*PI;
 			mcirc = circ*2.0*PI;
 			let x = (mrot.cos() * ( mcirc.cos()*r1 + r2 ) + cx) as i32;
