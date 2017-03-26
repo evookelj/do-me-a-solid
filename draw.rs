@@ -219,9 +219,9 @@ pub fn add_sphere(edges: &mut Gmatrix, cx: f32, cy: f32, cz: f32, r: f32) {
 		while circ < 1.0 {
 			mrot = rot*2.0*PI;
 			mcirc = circ*PI;
-			let x = (r * mcirc.cos()) as i32;
-			let y = (r * mcirc.sin() * mrot.cos()) as i32;
-			let z = (r * mcirc.sin() * mrot.sin()) as i32;
+			let x = (r * mcirc.cos()+ cx) as i32;
+			let y = (r * mcirc.sin() * mrot.cos() + cy) as i32;
+			let z = (r * mcirc.sin() * mrot.sin() + cz) as i32;
 			edges.add_edge(x,y,z,x+2,y+2,z+2);
 			circ += 0.01
 		}
