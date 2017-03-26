@@ -195,8 +195,17 @@ pub fn add_circle(edges: &mut Gmatrix, cx: f32, cy: f32, cz: f32, r: f32) {
 	paramet_circ(edges, &circle_x, &circle_y, [cx,cy,cz,r], 0.01);
 }
 
-pub fn add_box(edges: &mut Gmatrix, x:f32, y:f32, z:f32, w:f32, l:f32, d:f32) {
-	println!("Adding a box!");
+pub fn add_box(edges: &mut Gmatrix, x:i32, y:i32, z:i32, w:i32, h:i32, d:i32) {
+	edges.add_edge(x,y,z, x+w,y,z);
+	edges.add_edge(x+w,y,z, x+w,y-h,z);
+	edges.add_edge(x+w,y-h,z, x,y-h,z);
+	edges.add_edge(x,y-h,z, x,y,z);
+
+	edges.add_edge(x,y,z, x,y,z-d);
+	edges.add_edge(x,y,z-d, x+w,y,z-d);
+	edges.add_edge(x+w,y,z-d, x+w,y,z);
+	edges.add_edge(x,y,z-d, x,y-h,z-d);
+	edges.add_edge(x,y-h,z-d, x,y-h,z);
 }
 
 pub fn add_sphere(edges: &mut Gmatrix, cx: f32, cy: f32, cz: f32, r: f32) {
