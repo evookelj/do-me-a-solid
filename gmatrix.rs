@@ -102,9 +102,6 @@ impl Gmatrix {
 	*/
 
 	pub fn add_pt(&mut self, x0: i32, y0: i32, z0: i32) {
-		if y0<0 {
-			println!("Adding negative y val {}", y0);;
-		}
 		self.add_val(0, x0 as f32);
 		self.add_val(1, y0 as f32);
 		self.add_val(2, z0 as f32);

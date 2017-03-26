@@ -4,6 +4,8 @@ use gmatrix::get_hermite;
 
 use display::plot;
 
+use std::f32::consts::PI;
+
 fn line1(x0: i32, y0: i32, x1: i32, y1: i32, screen: &mut [[[u32; 3]; 500]; 500], color: [u32; 3]) {
 	let mut x = x0;
 	let mut y = y0;
@@ -214,4 +216,21 @@ pub fn add_sphere(edges: &mut Gmatrix, cx: f32, cy: f32, cz: f32, r: f32) {
 
 pub fn add_torus(edges: &mut Gmatrix, cx:f32, cy:f32, cz:f32, r1: f32, r2:f32) {
 	println!("Adding a torus!");
+	let mut rot = 0.0;
+	let mut mrot;
+	let mut mcirc;
+	while rot<1.0 {
+		let mut circ = 0.0;
+		while circ<1.0 {
+			println!("rot {} circ {}", rot,circ);
+			mrot = rot*2.0*PI;
+			mcirc = circ*2.0*PI;
+			let x = (mrot.cos() * ( mcirc.cos()*r1 + r2 ) + cx) as i32;
+			let y = (r1*mcirc.sin() + cy) as i32;
+			let z = (-1.0 * mrot.sin() * (r1*mcirc.cos() + r2) + cz) as i32;
+			edges.add_edge(x,y,z,x+2,y+2,z+2);
+			circ += 0.01
+		}
+		rot += 0.005;
+	}
 }
