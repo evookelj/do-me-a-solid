@@ -229,6 +229,6 @@ pub fn add_torus(edges: &mut Gmatrix, cx:f32, cy:f32, cz:f32, r1: f32, r2:f32) {
 			edges.add_edge(x,y,z,x+2,y+2,z+2);
 			circ += 0.01
 		}
-		rot += 0.005;
+		rot += 0.0025;
 	}
 }
