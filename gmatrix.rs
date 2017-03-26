@@ -81,6 +81,14 @@ impl Gmatrix {
 		o.data = self.m_mult(o).data;
 	}
 
+	pub fn clear(&mut self) {
+		for r in 0..self.rlen() {
+			for c in 0..self.clen() {
+				self.set_val(r,c,0.0);
+			}
+		}
+	}
+
 /*
 	pub fn s_mult(&self, s: f32) -> Gmatrix {
 		let mut ret = Gmatrix::new();

@@ -17,6 +17,9 @@ use display::save_ppm;
 use draw::draw_lines;
 use draw::add_curve;
 use draw::add_circle;
+use draw::add_box;
+use draw::add_sphere;
+use draw::add_torus;
 
 pub fn parse_file(name: &str, transf: &mut Gmatrix, edges: &mut Gmatrix, screen: &mut [[[u32; 3]; 500]; 500]) {
 	let f = File::open(name).unwrap();
@@ -28,7 +31,7 @@ pub fn parse_file(name: &str, transf: &mut Gmatrix, edges: &mut Gmatrix, screen:
 
 		let split = l.split(" ");
  		let vec: Vec<&str> = split.collect();
-
+ 		
 		match last.trim() {
 			"save" => {
 				draw_lines(edges, screen, [255,255,255]);
@@ -109,6 +112,36 @@ pub fn parse_file(name: &str, transf: &mut Gmatrix, edges: &mut Gmatrix, screen:
 					"b");
 				last = String::from("");
 			}
+			"box" => {
+				add_box(edges,
+					vec[0].parse().unwrap(), //x
+					vec[1].parse().unwrap(), //y
+					vec[2].parse().unwrap(), //z
+					vec[3].parse().unwrap(), //width
+					vec[4].parse().unwrap(), //height
+					vec[5].parse().unwrap() //depth
+					);
+				last = String::from("");
+			}
+			"sphere" => {
+				add_sphere(edges,
+					vec[0].parse().unwrap(), //cx
+					vec[1].parse().unwrap(), //cy
+					vec[2].parse().unwrap(), //cz
+					vec[3].parse().unwrap()
+					); //r
+				last = String::from("");
+			}
+			"torus" => {
+				add_torus(edges,
+					vec[0].parse().unwrap(), //cx
+					vec[1].parse().unwrap(), //cy
+					vec[2].parse().unwrap(), //cz
+					vec[3].parse().unwrap(), //r1
+					vec[4].parse().unwrap() //r2
+					);
+				last = String::from("");
+			}
  			_ => {
 				match l.trim() {
 				"ident" => {
@@ -124,6 +157,9 @@ pub fn parse_file(name: &str, transf: &mut Gmatrix, edges: &mut Gmatrix, screen:
 					draw_lines(edges, screen, [255,50,50]);
 					disp(screen);
 					clear_screen(screen);
+				}
+				"clear" => {
+					edges.clear();
 				}
 				_ => last = String::from(vec[0]),
 				}

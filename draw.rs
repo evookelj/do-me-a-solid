@@ -194,3 +194,15 @@ pub fn add_curve(edges: &mut Gmatrix, x0:f32,y0:f32,x1:f32,y1:f32,a5:f32,a6:f32,
 pub fn add_circle(edges: &mut Gmatrix, cx: f32, cy: f32, cz: f32, r: f32) {
 	paramet_circ(edges, &circle_x, &circle_y, [cx,cy,cz,r], 0.01);
 }
+
+pub fn add_box(edges: &mut Gmatrix, x:f32, y:f32, z:f32, w:f32, l:f32, d:f32) {
+	println!("Adding a box!");
+}
+
+pub fn add_sphere(edges: &mut Gmatrix, cx: f32, cy: f32, cz: f32, r: f32) {
+	println!("Adding a sphere!");
+}
+
+pub fn add_torus(edges: &mut Gmatrix, cx:f32, cy:f32, cz:f32, r1: f32, r2:f32) {
+	println!("Adding a torus!");
+}
