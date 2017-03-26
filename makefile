@@ -1,6 +1,3 @@
-main: main.rs
-	rustc main.rs
-
-run: main
+run: main.rs
 	rustc main.rs
 	./main
